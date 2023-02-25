@@ -82,7 +82,7 @@ public class PropertyService {
                     flat+=page.charAt(j);
                     j++;
                 }
-                result.add(flat);
+                result.add("https://www.olx.pl/" + flat);
             }
         }
         return result;
