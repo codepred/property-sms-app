@@ -30,6 +30,7 @@ public class PropertyEntity {
     @Column
     private Date createdAt;
 
+    @Column(name = "phone_number", unique = true)
     private String phoneNumber;
 
     @Column(name = "wassent")
@@ -37,6 +38,8 @@ public class PropertyEntity {
 
     @Column(unique = true)
     private String pageUrl;
+
+    private String area;
 
     private String pageId;
 
