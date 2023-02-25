@@ -24,8 +24,7 @@ public class PropertyController {
 
     @PostMapping("/sendSms/{phone}")
     public ResponseEntity<Object> sendSms(@PathVariable("phone")String phone){
-        smsService.sendSms(phone);
-        return ResponseEntity.status(200).body("SMS WAS SENT");
+        return ResponseEntity.status(200).body(smsService.sendSms(phone));
     }
 
     @GetMapping("/all")
