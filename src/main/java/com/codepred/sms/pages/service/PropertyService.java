@@ -31,7 +31,7 @@ public class PropertyService {
     @Autowired
     PropertyRepository propertyRepository;
 
-    public void loadData(String url){
+    public void loadData(String url, String area){
         Set<String> pages = getPostUrl(url);
         for(String page: pages){
             PropertyEntity propertyEntity = new PropertyEntity();
@@ -39,6 +39,7 @@ public class PropertyService {
             String id = getPageId(page);
             propertyEntity.setPageId(id);
             propertyEntity.setWasSent(false);
+            propertyEntity.setArea(area);
             propertyRepository.save(propertyEntity);
         }
     }
@@ -154,6 +155,12 @@ public class PropertyService {
     public void sendSmsToAll(){
         List<PropertyEntity> propertyEntityList = propertyRepository.getAllToSent();
         propertyEntityList.stream().forEach(x -> smsService.sendSms(x.getPhoneNumber()));
+        propertyEntityList.stream().forEach(x -> x.setWasSent(true));
+        propertyEntityList.stream().forEach(x -> propertyRepository.save(x));
+    }
+
+    public PropertyEntity getByPhone(String phone){
+        return propertyRepository.getByPhone(phone);
     }
 
 

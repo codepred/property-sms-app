@@ -17,8 +17,8 @@ public class PropertyController {
     SmsService smsService;
 
     @PostMapping("/loadProperties")
-    public ResponseEntity<Object> loadData(@RequestParam("url")String url){
-        propertyService.loadData(url);
+    public ResponseEntity<Object> loadData(@RequestParam("url")String url,@RequestParam("area")String area){
+        propertyService.loadData(url,area);
         return ResponseEntity.status(200).body("DATA LOADED");
     }
 
@@ -30,6 +30,11 @@ public class PropertyController {
     @GetMapping("/all")
     public ResponseEntity<Object> getAllData(){
         return ResponseEntity.status(200).body(propertyService.getAll());
+    }
+
+    @GetMapping("/get/{phone}")
+    public ResponseEntity<Object> getAllData(@PathVariable("phone")String phone){
+        return ResponseEntity.status(200).body(propertyService.getByPhone(phone));
     }
 
     @PostMapping("/addUrl")
