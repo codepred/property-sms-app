@@ -1,13 +1,9 @@
-package com.codepred.sms.pages.model;
+package com.codepred.sms.property.model;
 
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import org.hibernate.annotations.CreationTimestamp;
-
-import java.util.*;
 
 import jakarta.persistence.*;
 

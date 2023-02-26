@@ -1,8 +1,8 @@
-package com.codepred.sms.pages.service;
+package com.codepred.sms.property.service;
 
-import com.codepred.sms.pages.dto.ResponseObject;
-import com.codepred.sms.pages.model.PropertyEntity;
-import com.codepred.sms.pages.repository.PropertyRepository;
+import com.codepred.sms.property.dto.ResponseObject;
+import com.codepred.sms.property.model.PropertyEntity;
+import com.codepred.sms.property.repository.PropertyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
@@ -36,7 +36,8 @@ public class PropertyService {
         for(String page: pages){
             PropertyEntity propertyEntity = new PropertyEntity();
             propertyEntity.setPageUrl(page);
-            String id = getPageId(page);
+            String pageData = getPageData(page);
+            String id = getPageId(pageData);
             propertyEntity.setPageId(id);
             propertyEntity.setWasSent(false);
             propertyEntity.setArea(area);

@@ -1,4 +1,4 @@
-package com.codepred.sms.pages.dto;
+package com.codepred.sms.property.dto;
 
 import lombok.Data;
 import java.util.*;

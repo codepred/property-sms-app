@@ -1,4 +1,4 @@
-package com.codepred.sms.pages.service;
+package com.codepred.sms.property.service;
 
 
 import org.springframework.beans.factory.annotation.Value;
@@ -7,10 +7,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
-
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
 
 @Service
 public class SmsService {

@@ -1,8 +1,7 @@
-package com.codepred.sms.pages.controller;
+package com.codepred.sms.property.controller;
 
-import com.codepred.sms.pages.repository.PropertyRepository;
-import com.codepred.sms.pages.service.PropertyService;
-import com.codepred.sms.pages.service.SmsService;
+import com.codepred.sms.property.service.PropertyService;
+import com.codepred.sms.property.service.SmsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

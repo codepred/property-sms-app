@@ -1,6 +1,6 @@
-package com.codepred.sms.pages.repository;
+package com.codepred.sms.property.repository;
 
-import com.codepred.sms.pages.model.PropertyEntity;
+import com.codepred.sms.property.model.PropertyEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
