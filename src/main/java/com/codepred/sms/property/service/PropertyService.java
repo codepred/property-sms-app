@@ -34,14 +34,18 @@ public class PropertyService {
     public void loadData(String url, String area){
         Set<String> pages = getPostUrl(url);
         for(String page: pages){
-            PropertyEntity propertyEntity = new PropertyEntity();
-            propertyEntity.setPageUrl(page);
-            String pageData = getPageData(page);
-            String id = getPageId(pageData);
-            propertyEntity.setPageId(id);
-            propertyEntity.setWasSent(false);
-            propertyEntity.setArea(area);
-            propertyRepository.save(propertyEntity);
+            try {
+                PropertyEntity propertyEntity = new PropertyEntity();
+                propertyEntity.setPageUrl(page);
+                String pageData = getPageData(page);
+                String id = getPageId(pageData);
+                propertyEntity.setPageId(id);
+                propertyEntity.setWasSent(false);
+                propertyEntity.setArea(area);
+                propertyRepository.save(propertyEntity);
+            }catch (Exception e){
+                System.out.println("PROPERTY ALREADY IN DATABASE");
+            }
         }
     }
 
