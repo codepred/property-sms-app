@@ -1,5 +1,6 @@
 package com.codepred.sms.property.controller;
 
+import com.codepred.sms.property.service.OtoDomService;
 import com.codepred.sms.property.service.PropertyService;
 import com.codepred.sms.property.service.SmsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,10 +16,19 @@ public class PropertyController {
     @Autowired
     SmsService smsService;
 
+    @Autowired
+    OtoDomService otoDomService;
+
     @PostMapping("/loadProperties")
     public ResponseEntity<Object> loadData(@RequestParam("url")String url,@RequestParam("area")String area){
         propertyService.loadData(url,area);
         return ResponseEntity.status(200).body("DATA LOADED");
+    }
+
+    @GetMapping("/fixnumbers")
+    public ResponseEntity<Object> fixNumbers(){
+        propertyService.updateDatabaseNumbers();
+        return ResponseEntity.status(200).body("FIXED");
     }
 
     @PostMapping("/sendSms/{phone}")
@@ -50,6 +60,18 @@ public class PropertyController {
     public ResponseEntity<Object> sendSms(){
         propertyService.sendSmsToAll();
         return ResponseEntity.status(200).body("Sms to all was sent");
+    }
+
+
+    @PostMapping("/loadPropertiesOto")
+    public ResponseEntity<Object> addOtoDomProperty(@RequestParam("url")String url,@RequestParam("area")String area){
+        otoDomService.loadData(url,area);
+        return ResponseEntity.status(200).body("ADDED");
+    }
+
+    @GetMapping("/getOto")
+    public ResponseEntity<Object> getPhoneNumberOto(@RequestParam("url")String url){
+        return ResponseEntity.status(200).body(otoDomService.getPhoneNumber(url));
     }
 
 }

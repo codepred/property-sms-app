@@ -158,14 +158,35 @@ public class PropertyService {
     }
 
     public void sendSmsToAll(){
+        updateDatabaseNumbers();
         List<PropertyEntity> propertyEntityList = propertyRepository.getAllToSent();
-        propertyEntityList.stream().forEach(x -> smsService.sendSms(x.getPhoneNumber()));
-        propertyEntityList.stream().forEach(x -> x.setWasSent(true));
-        propertyEntityList.stream().forEach(x -> propertyRepository.save(x));
+        for(PropertyEntity propertyEntity : propertyEntityList){
+            if(propertyEntity.getPhoneNumber()!=null){
+                try {
+                    String phone = propertyEntity.getPhoneNumber().replaceAll("\\s+","");
+                    smsService.sendSms(phone);
+                    propertyEntity.setWasSent(true);
+                    propertyEntity.setSendSmsDate(new Date());
+                    propertyRepository.save(propertyEntity);
+                }catch (Exception e){
+                    System.out.println("SMS WAS NOT SEND FOR: " + propertyEntity.getPhoneNumber());
+                }
+            }
+        }
     }
 
     public PropertyEntity getByPhone(String phone){
         return propertyRepository.getByPhone(phone);
+    }
+
+    public void updateDatabaseNumbers(){
+        List<PropertyEntity> list = propertyRepository.findAll();
+        for(PropertyEntity propertyEntity: list){
+            if(propertyEntity.getPhoneNumber() != null) {
+                propertyEntity.setPhoneNumber(propertyEntity.getPhoneNumber().replaceAll("\\s+", ""));
+                propertyRepository.save(propertyEntity);
+            }
+        }
     }
 
 

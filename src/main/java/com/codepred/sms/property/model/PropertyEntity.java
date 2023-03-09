@@ -26,6 +26,8 @@ public class PropertyEntity {
     @Column
     private Date createdAt;
 
+    private Date sendSmsDate;
+
     @Column(name = "phone_number", unique = true)
     private String phoneNumber;
 
